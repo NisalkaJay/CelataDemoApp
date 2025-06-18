@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'rea
 import { useRouter } from 'expo-router';
 import { AuthContext } from '../context/AuthContext';
 
-// Replace these with your actual local image imports
+
 const iconHelp = require('../../assets/ICONS/help.png');
 const iconAbout = require('../../assets/ICONS/aboutUs.png');
 const iconSettings = require('../../assets/ICONS/AccountSettings.png');
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     marginBottom: 3,
   },
   menuContainer: {
-    // optional: add spacing or flex here
+    
   },
   menuBox: {
     backgroundColor: '#fff',
@@ -113,12 +113,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 10,
     marginBottom: 15,
-    // Shadow for iOS
+    
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
     shadowRadius: 5,
-    // Elevation for Android
+    
     elevation: 5,
   },
   iconLeft: {

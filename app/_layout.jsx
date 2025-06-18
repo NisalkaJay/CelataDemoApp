@@ -6,9 +6,6 @@ import { useFonts } from 'expo-font';
 import { FontAwesome } from '@expo/vector-icons';
 import 'react-native-reanimated';
 
-// Remove this if you deleted the custom hook
-import { useColorScheme } from 'react-native'; // fallback if you removed @/components/useColorScheme
-
 export { ErrorBoundary } from 'expo-router';
 
 export const unstable_settings = {

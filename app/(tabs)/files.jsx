@@ -25,6 +25,6 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: '80%',
-    backgroundColor: '#eee', // static separator color
+    backgroundColor: '#eee', 
   },
 });

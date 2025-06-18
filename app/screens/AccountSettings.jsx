@@ -48,7 +48,7 @@ export default function AccountScreen() {
       <View style={styles.innerContainer}>
         
 
-        {/* Row: Image Left | Info Right */}
+      
         <View style={styles.profileRow}>
           {user.profileImage ? (
             <Image source={{ uri: user.profileImage }} style={styles.profileImage} />

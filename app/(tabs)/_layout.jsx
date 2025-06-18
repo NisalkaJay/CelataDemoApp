@@ -11,9 +11,6 @@ import {
 
 const { width } = Dimensions.get('window');
 
-/**
- * Center floating button
- */
 function CustomHomeButton({ children, onPress }) {
   return (
     <TouchableOpacity
@@ -56,7 +53,7 @@ export default function TabLayout() {
         name="index"
         options={{
           headerShown: false,
-          title: '',   // No title for home
+          title: '',   
           tabBarIcon: ({ focused }) => (
             <FontAwesome
               name="home"

@@ -1,4 +1,3 @@
-// app/auth/LoginPage.jsx
 import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';

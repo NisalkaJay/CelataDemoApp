@@ -40,7 +40,7 @@ export default function GeoBizz() {
 
   return (
     <View style={styles.container}>
-      {/* Top Header */}
+
       <View style={styles.header}>
         <View style={styles.profileRow}>
           {user?.profileImage ? (
@@ -64,7 +64,7 @@ export default function GeoBizz() {
         />
       </View>
 
-      {/* Searchable Boxes */}
+      
       <FlatList
         data={filtered}
         keyExtractor={(item) => item.title}

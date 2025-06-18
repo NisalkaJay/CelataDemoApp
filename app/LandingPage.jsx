@@ -7,7 +7,7 @@ export default function Landing() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace('/auth/LoginPage'); // Redirect to the auth page after 5 seconds
+      router.replace('/auth/LoginPage');
     }, 5000);
 
     return () => clearTimeout(timer);
@@ -21,7 +21,7 @@ export default function Landing() {
         resizeMode="contain"
       />
       <Image
-        source={require('../assets/ICONS/logo.png')} // add your logo image here
+        source={require('../assets/ICONS/logo.png')}
         style={styles.logoImage}
         resizeMode="contain"
       />
@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
   logoImage: {
     width: 350,
     height: 200,
-    marginTop: 10, // space between images
+    marginTop: 10,
   },
 });

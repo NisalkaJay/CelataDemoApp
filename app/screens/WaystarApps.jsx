@@ -64,7 +64,7 @@ export default function GeoBizz() {
         />
       </View>
 
-      {/* Searchable Boxes */}
+      
       <FlatList
         data={filtered}
         keyExtractor={(item) => item.title}

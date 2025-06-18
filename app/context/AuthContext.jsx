@@ -1,4 +1,3 @@
-// context/AuthContext.jsx
 import React, { createContext, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -15,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     loadUser();
   }, []);
 
-  // --- SIGNUP ---
+  // SIGNUP 
   const signup = async ({ username, email, phone, password }) => {
     const usersJSON = await AsyncStorage.getItem('users');
     const users = usersJSON ? JSON.parse(usersJSON) : [];
@@ -32,7 +31,7 @@ export const AuthProvider = ({ children }) => {
     setUser(newUser);
   };
 
-  // ✅ Login using email
+  // Login using email
   const login = async (email, password) => {
     const usersJSON = await AsyncStorage.getItem('users');
     const users = usersJSON ? JSON.parse(usersJSON) : [];
@@ -52,7 +51,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  // ✅ Update profile (excluding email)
+  // Update profile (excluding email)
   const updateProfile = async ({ username, phone, password }) => {
     if (!user || !user.email) {
       throw new Error('No logged-in user to update');
