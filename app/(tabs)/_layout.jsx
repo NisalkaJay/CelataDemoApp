@@ -29,11 +29,19 @@ function CustomHomeButton({ children, onPress }) {
 export default function TabLayout() {
   return (
     <Tabs
-      screenOptions={{
-        headerShown: false,
-        tabBarShowLabel: true,   // Enable labels globally
-        tabBarStyle: styles.tabBar,
-      }}
+       screenOptions={{
+    headerShown: true,
+    headerStyle: {
+      backgroundColor: '#008BCC',
+    },
+    headerTintColor: '#ffffff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+    tabBarStyle: styles.tabBar,
+    tabBarActiveTintColor: '#008BCC',
+    tabBarInactiveTintColor: '#888',
+  }}
     >
       <Tabs.Screen
         name="files"
@@ -47,6 +55,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
+          headerShown: false,
           title: '',   // No title for home
           tabBarIcon: ({ focused }) => (
             <FontAwesome
@@ -69,6 +78,7 @@ export default function TabLayout() {
       />
     </Tabs>
   );
+  
 }
 
 const styles = StyleSheet.create({
@@ -93,7 +103,7 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 35,
-    backgroundColor: '#007AFF',
+    backgroundColor: '#008BCC',
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 8,
