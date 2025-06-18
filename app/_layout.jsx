@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ThemeProvider, DarkTheme, DefaultTheme } from '@react-navigation/native';
+import { AuthProvider } from './context/AuthContext';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
@@ -41,16 +41,71 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="LandingPage" options={{ headerShown: false }} />
-        <Stack.Screen name="LoginPage" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        
+    <AuthProvider>
+      <Stack
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#008BCC',
+          },
+          headerTintColor: '#ffffff', 
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 24,
+          },
+        }}
+      >
+        <Stack.Screen
+          name="LandingPage"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="(tabs)"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="screens/AccountSettings"
+          options={{
+            title: 'Account Settings', 
+          }}
+        />
+        <Stack.Screen
+          name="screens/LanguagePreference"
+          options={{
+            title: 'Language Settings', 
+          }}
+        />
+        <Stack.Screen
+          name="auth/LoginPage"
+          options={{
+            title: 'Login', 
+          }}
+        />
+        <Stack.Screen
+          name="auth/SignupPage"
+          options={{
+            title: 'Create Account', 
+            
+          }}
+        />
+        <Stack.Screen
+          name="screens/GeoBizz"
+          options={{
+            title: 'GeoBizz', 
+          }}
+        />
+        <Stack.Screen
+          name="screens/WaystarApps"
+          options={{
+            title: 'Waystar apps', 
+          }}
+        />
       </Stack>
-    </ThemeProvider>
+    </AuthProvider>
   );
 }
+
