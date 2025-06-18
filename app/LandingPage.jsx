@@ -7,7 +7,7 @@ export default function Landing() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace('/'); 
+      router.replace('/auth/LoginPage'); // Redirect to the auth page after 5 seconds
     }, 5000);
 
     return () => clearTimeout(timer);
