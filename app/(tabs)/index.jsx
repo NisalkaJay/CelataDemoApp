@@ -1,3 +1,4 @@
+// Import necessary libraries and components
 import React, { useContext, useState } from 'react';
 import {
   StyleSheet,
@@ -11,16 +12,19 @@ import {
 import { useRouter } from 'expo-router';
 import { AuthContext } from '../context/AuthContext';
 
+// Load icons from assets
 const iconArrow = require('../../assets/ICONS/right-arrow.png');
 const iconGeo = require('../../assets/ICONS/item.png');
 const iconWay = require('../../assets/ICONS/item.png');
 
+// Main component for the Home Screen
 export default function HomeScreen() {
-  const { user } = useContext(AuthContext);
-  const router = useRouter();
+  const { user } = useContext(AuthContext); // Access user context
+  const router = useRouter(); // Navigation hook
 
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(''); // State for search bar
 
+  // Determine greeting based on current time
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 12) return 'Good Morning';
@@ -28,6 +32,7 @@ export default function HomeScreen() {
     else return 'Good Evening';
   };
 
+  // Features to display on home screen
   const features = [
     {
       title: 'GeoBizz',
@@ -41,15 +46,17 @@ export default function HomeScreen() {
     },
   ];
 
+  // Filter features based on search input
   const filteredFeatures = features.filter((item) =>
     item.title.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <View style={styles.container}>
-      {/* Header Bar */}
+      {/* Header section with user info and greeting */}
       <View style={styles.header}>
         <View style={styles.profileRow}>
+          {/* Display profile image or fallback if not available */}
           {user?.profileImage ? (
             <Image source={{ uri: user.profileImage }} style={styles.profileImage} />
           ) : (
@@ -57,13 +64,15 @@ export default function HomeScreen() {
               <Text style={styles.placeholderText}>No Img</Text>
             </View>
           )}
+
+          {/* User details */}
           <View style={styles.userInfo}>
             <Text style={styles.username}>{user?.username}</Text>
             <Text style={styles.greeting}>{getGreeting()}</Text>
           </View>
         </View>
 
-        {/* Search Bar */}
+        {/* Search input field */}
         <TextInput
           style={styles.searchBar}
           placeholder="Search..."
@@ -73,14 +82,14 @@ export default function HomeScreen() {
         />
       </View>
 
-      {/* Filtered Feature Boxes */}
+      {/* Feature list filtered by search */}
       <FlatList
         data={filteredFeatures}
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.featureBox}
-            onPress={() => router.push(item.route)}
+            onPress={() => router.push(item.route)} // Navigate to route on press
           >
             <Image source={item.icon} style={styles.iconLeft} />
             <Text style={styles.boxText}>{item.title}</Text>
@@ -98,9 +107,10 @@ export default function HomeScreen() {
   );
 }
 
+// Style definitions for the component
 const styles = StyleSheet.create({
   container: {
-    marginTop:50,
+    marginTop: 50,
     flex: 1,
     padding: 20,
     backgroundColor: '#f2f2f2',

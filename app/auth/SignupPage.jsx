@@ -1,3 +1,4 @@
+// Import necessary libraries and components
 import React, { useState, useContext } from 'react';
 import {
   View,
@@ -10,49 +11,58 @@ import {
   Image,
   ImageBackground,
 } from 'react-native';
-import { useRouter } from 'expo-router';
-import { AuthContext } from '../context/AuthContext';
+import { useRouter } from 'expo-router'; // Navigation from Expo Router
+import { AuthContext } from '../context/AuthContext'; // Importing Auth context for signup
 
+// Import background and social login icon assets
 const bgImage = require('../../assets/images/background_images.png');
 const googleIcon = require('../../assets/ICONS/google.png');
 const facebookIcon = require('../../assets/ICONS/facebook.png');
 
+// Main functional component for Sign Up Page
 export default function SignupPage() {
+  // State variables to store form input values
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
 
-  const { signup } = useContext(AuthContext);
-  const router = useRouter();
+  const { signup } = useContext(AuthContext); // Accessing signup method from context
+  const router = useRouter(); // Navigation hook
 
-    const handleSignup = async () => {
+  // Function to handle signup logic
+  const handleSignup = async () => {
+    // Validation: check all fields are filled
     if (!username || !email || !phone || !password) {
       Alert.alert('Error', 'Please fill all fields');
       return;
     }
 
     try {
+      // Trigger signup and show confirmation
       await signup({ username, email, phone, password });
       Alert.alert('Success', 'Verification PIN sent!');
-      router.push('/auth/VerifyPage');
+      router.push('/auth/VerifyPage'); // Navigate to verification page
     } catch (err) {
-      Alert.alert('Signup Failed', err.message);
+      Alert.alert('Signup Failed', err.message); // Handle any signup error
     }
   };
-
 
   return (
     <ImageBackground source={bgImage} style={styles.background}>
       <ScrollView contentContainerStyle={styles.container}>
+        {/* Page Title */}
         <Text style={styles.title}>Sign Up</Text>
 
+        {/* Username Input */}
         <TextInput
           style={styles.input}
           placeholder="Username"
           value={username}
           onChangeText={setUsername}
         />
+
+        {/* Email Input */}
         <TextInput
           style={styles.input}
           placeholder="Email"
@@ -61,6 +71,8 @@ export default function SignupPage() {
           autoCapitalize="none"
           keyboardType="email-address"
         />
+
+        {/* Phone Number Input */}
         <TextInput
           style={styles.input}
           placeholder="Phone Number"
@@ -68,6 +80,8 @@ export default function SignupPage() {
           onChangeText={setPhone}
           keyboardType="phone-pad"
         />
+
+        {/* Password Input */}
         <TextInput
           style={styles.input}
           placeholder="Password"
@@ -76,10 +90,12 @@ export default function SignupPage() {
           onChangeText={setPassword}
         />
 
+        {/* Sign Up Button */}
         <TouchableOpacity style={styles.signupButton} onPress={handleSignup}>
           <Text style={styles.signupButtonText}>Sign Up</Text>
         </TouchableOpacity>
 
+        {/* Social Login Buttons */}
         <TouchableOpacity style={styles.socialButton}>
           <Image source={googleIcon} style={styles.icon} />
           <Text style={styles.socialButtonText}>Continue with Google</Text>
@@ -90,6 +106,7 @@ export default function SignupPage() {
           <Text style={styles.socialButtonText}>Continue with Facebook</Text>
         </TouchableOpacity>
 
+        {/* Link to Login Page */}
         <TouchableOpacity onPress={() => router.push('/auth/LoginPage')}>
           <Text style={styles.signUpText}>Already have an account? Login</Text>
         </TouchableOpacity>
@@ -98,6 +115,7 @@ export default function SignupPage() {
   );
 }
 
+// Stylesheet for the Sign Up Page
 const styles = StyleSheet.create({
   background: {
     flex: 1,
