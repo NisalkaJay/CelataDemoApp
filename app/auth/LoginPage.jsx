@@ -1,3 +1,4 @@
+// Import required dependencies and components
 import React, { useState, useContext } from 'react';
 import {
   View,
@@ -10,20 +11,25 @@ import {
   StyleSheet,
   Image,
 } from 'react-native';
-import { useRouter } from 'expo-router';
-import { AuthContext } from '../context/AuthContext';
+import { useRouter } from 'expo-router'; // Navigation handler from Expo Router
+import { AuthContext } from '../context/AuthContext'; // Authentication context
 
+// Import background and icon images
 const bgImage = require('../../assets/images/background_images.png');
 const googleIcon = require('../../assets/ICONS/google.png');
 const facebookIcon = require('../../assets/ICONS/facebook.png');
 
+// Main component for the Login Page
 export default function LoginPage() {
+  // State variables for email and password input fields
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // Get login function from authentication context
   const { login } = useContext(AuthContext);
-  const router = useRouter();
+  const router = useRouter(); // Router hook for navigation
 
+  // Handle login logic
   const handleLogin = async () => {
     if (!email || !password) {
       Alert.alert('Error', 'Please enter both email and password');
@@ -31,18 +37,20 @@ export default function LoginPage() {
     }
 
     try {
-      await login(email, password);
-      router.replace('/');
+      await login(email, password); // Try logging in
+      router.replace('/'); // Navigate to home page on success
     } catch (err) {
-      Alert.alert('Login Failed', err.message);
+      Alert.alert('Login Failed', err.message); // Show error alert if login fails
     }
   };
 
   return (
     <ImageBackground source={bgImage} style={styles.background}>
       <ScrollView contentContainerStyle={styles.container}>
+        {/* Login Title */}
         <Text style={styles.title}>Login</Text>
 
+        {/* Email Input Field */}
         <TextInput
           style={styles.input}
           placeholder="Email"
@@ -52,6 +60,7 @@ export default function LoginPage() {
           keyboardType="email-address"
         />
 
+        {/* Password Input Field */}
         <TextInput
           style={styles.input}
           placeholder="Password"
@@ -60,20 +69,24 @@ export default function LoginPage() {
           onChangeText={setPassword}
         />
 
+        {/* Continue/Login Button */}
         <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Continue</Text>
         </TouchableOpacity>
 
+        {/* Google Sign-In Button */}
         <TouchableOpacity style={styles.socialButton}>
           <Image source={googleIcon} style={styles.icon} />
           <Text style={styles.socialButtonText}>Continue with Google</Text>
         </TouchableOpacity>
 
+        {/* Facebook Sign-In Button */}
         <TouchableOpacity style={styles.socialButton}>
           <Image source={facebookIcon} style={styles.icon} />
           <Text style={styles.socialButtonText}>Continue with Facebook</Text>
         </TouchableOpacity>
 
+        {/* Navigation to Signup Page */}
         <TouchableOpacity onPress={() => router.push('/auth/SignupPage')}>
           <Text style={styles.signUpText}>Don't have an account? Sign up</Text>
         </TouchableOpacity>
@@ -82,6 +95,7 @@ export default function LoginPage() {
   );
 }
 
+// Style definitions for the component
 const styles = StyleSheet.create({
   background: {
     flex: 1,

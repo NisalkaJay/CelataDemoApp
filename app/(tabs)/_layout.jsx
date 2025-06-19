@@ -1,6 +1,6 @@
 import React from 'react';
-import { FontAwesome } from '@expo/vector-icons';
-import { Tabs } from 'expo-router';
+import { FontAwesome } from '@expo/vector-icons'; // FontAwesome icons for tabs
+import { Tabs } from 'expo-router'; // Expo router for tab navigation
 import {
   View,
   TouchableOpacity,
@@ -9,8 +9,10 @@ import {
   Platform,
 } from 'react-native';
 
+// Get device screen width for styling if needed
 const { width } = Dimensions.get('window');
 
+// Custom central Home button with floating action style
 function CustomHomeButton({ children, onPress }) {
   return (
     <TouchableOpacity
@@ -23,23 +25,25 @@ function CustomHomeButton({ children, onPress }) {
   );
 }
 
+// Main tab layout component with three tabs: Files, Home (center), Account
 export default function TabLayout() {
   return (
     <Tabs
-       screenOptions={{
-    headerShown: true,
-    headerStyle: {
-      backgroundColor: '#008BCC',
-    },
-    headerTintColor: '#ffffff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-    tabBarStyle: styles.tabBar,
-    tabBarActiveTintColor: '#008BCC',
-    tabBarInactiveTintColor: '#888',
-  }}
+      screenOptions={{
+        headerShown: true, // Show headers by default
+        headerStyle: {
+          backgroundColor: '#008BCC', // Header background color
+        },
+        headerTintColor: '#ffffff', // Header text/icon color
+        headerTitleStyle: {
+          fontWeight: 'bold', // Header text bold
+        },
+        tabBarStyle: styles.tabBar, // Custom tab bar style
+        tabBarActiveTintColor: '#008BCC', // Active tab icon/text color
+        tabBarInactiveTintColor: '#888', // Inactive tab icon/text color
+      }}
     >
+      {/* Tab 1: Files screen with folder icon */}
       <Tabs.Screen
         name="files"
         options={{
@@ -49,21 +53,25 @@ export default function TabLayout() {
           ),
         }}
       />
+
+      {/* Tab 2: Center Home button with custom floating style */}
       <Tabs.Screen
         name="index"
         options={{
-          headerShown: false,
-          title: '',   
+          headerShown: false, // Hide header for Home screen
+          title: '', // No label on tab
           tabBarIcon: ({ focused }) => (
             <FontAwesome
               name="home"
               size={28}
-              color="white"
+              color="white" // Home icon always white
             />
           ),
-          tabBarButton: (props) => <CustomHomeButton {...props} />,
+          tabBarButton: (props) => <CustomHomeButton {...props} />, // Use custom button
         }}
       />
+
+      {/* Tab 3: Account screen with gear icon */}
       <Tabs.Screen
         name="account"
         options={{
@@ -75,23 +83,23 @@ export default function TabLayout() {
       />
     </Tabs>
   );
-  
 }
 
+// Styles for tab bar and floating home button
 const styles = StyleSheet.create({
   tabBar: {
-    position: 'absolute',
+    position: 'absolute', // Position tab bar over content
     height: 65,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     backgroundColor: 'white',
-    elevation: 10,
+    elevation: 10, // Android shadow
     borderTopWidth: 0,
     paddingHorizontal: 20,
   },
   fabContainer: {
     position: 'absolute',
-    top: -30,
+    top: -30, // Floating above tab bar
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
@@ -99,10 +107,10 @@ const styles = StyleSheet.create({
   fab: {
     width: 70,
     height: 70,
-    borderRadius: 35,
+    borderRadius: 35, // Circular button
     backgroundColor: '#008BCC',
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 8,
+    elevation: 8, // Android shadow
   },
 });
