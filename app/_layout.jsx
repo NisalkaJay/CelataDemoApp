@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect ,useState} from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -79,13 +79,20 @@ function RootLayoutNav() {
         <Stack.Screen
           name="auth/LoginPage"
           options={{
-            title: 'Login', 
+            headerShown: false,
           }}
         />
         <Stack.Screen
           name="auth/SignupPage"
           options={{
-            title: 'Create Account', 
+            headerShown: false,
+            
+          }}
+        />
+        <Stack.Screen
+          name="auth/VerifyPage"
+          options={{
+            headerShown: false,
             
           }}
         />
